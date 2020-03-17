@@ -6,7 +6,7 @@ def send_to_all (sock, message):
 	for socket in connected_list:
 		if socket != server_socket and socket != sock :
 			try :
-				socket.send(message)
+				socket.send(message.encode('utf-8'))
 			except :
 				# if connection not available
 				socket.close()
@@ -20,7 +20,7 @@ if __name__ == "__main__":
 	connected_list = []
 	#used to be 4096
 	buffer = 4096
-	port = 15000
+	port = 13000
 
 	server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
