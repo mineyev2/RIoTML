@@ -18,6 +18,7 @@ if __name__ == "__main__":
 	record={}
 	# List to keep track of socket descriptors
 	connected_list = []
+	#used to be 4096
 	buffer = 4096
 	port = 15000
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
 			if sock == server_socket:
 				# Handle the case in which there is a new connection recieved through server_socket
 				sockfd, addr = server_socket.accept()
-				name=sockfd.recv(buffer)
+				name=sockfd.recv(buffer).decode()
 				connected_list.append(sockfd)
 				record[addr]=""
 				#print "record and conn list ",record,connected_list
@@ -56,14 +57,15 @@ if __name__ == "__main__":
                     #add name and address
 					record[addr]=name
 					print("Client (%s, %s) connected" % addr," [",record[addr],"]")
-					sockfd.send("\33[32m\r\33[1m Welcome to chat room. Enter 'tata' anytime to exit\n\33[0m")
+					welcome = "\33[32m\r\33[1m Welcome to chat room. Enter 'tata' anytime to exit\n\33[0m"
+					sockfd.send(welcome.encode('utf-8'))
 					send_to_all(sockfd, "\33[32m\33[1m\r "+name+" joined the conversation \n\33[0m")
 
 			#Some incoming message from a client
 			else:
 				# Data from client
 				try:
-					data1 = sock.recv(buffer)
+					data1 = sock.recv(buffer).decode()
 					#print "sock is: ",sock
 					data=data1[:data1.index("\n")]
 					#print "\ndata received: ",data

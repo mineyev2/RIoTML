@@ -29,7 +29,7 @@ def main():
         sys.exit()
 
     #if connected
-    s.send(name)
+    s.send(name.encode('utf-8'))
     display()
     while 1:
         socket_list = [sys.stdin, s]
@@ -40,7 +40,7 @@ def main():
         for sock in rList:
             #incoming message from server
             if sock == s:
-                data = sock.recv(4096)
+                data = sock.recv(4096).decode()
                 if not data :
                     print('\33[31m\33[1m \rDISCONNECTED!!\n \33[0m')
                     sys.exit()
@@ -51,7 +51,7 @@ def main():
             #user entered a message
             else :
                 msg=sys.stdin.readline()
-                s.send(msg)
+                s.send(msg.encode('utf-8'))
                 display()
 
 if __name__ == "__main__":
