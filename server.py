@@ -20,11 +20,11 @@ if __name__ == "__main__":
 	connected_list = []
 	#used to be 4096
 	buffer = 4096
-	port = 13000
+	port = 12000
 
 	server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-	server_socket.bind(("localhost", port))
+	server_socket.bind((socket.gethostname(), port))
 	server_socket.listen(10) #listen atmost 10 connection at one time
 
 	# Add server socket to the list of readable connections
