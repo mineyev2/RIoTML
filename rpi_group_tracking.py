@@ -88,13 +88,8 @@ def ball_tracking():
         # if the 'q' key is pressed, stop the loop
         if key == ord("q"):
             break
-
-def main():
-    #starting up ball tracking thread
-    thread = threading.Thread(target=ball_tracking())
-    thread.start()
-
-    #server setup (client side)
+def client():
+    # server setup (client side)
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
         print(host)
@@ -118,7 +113,6 @@ def main():
     # if connected
     s.send(name.encode('utf-8'))
     display()
-
 
     while 1:
         socket_list = [sys.stdin, s]
@@ -144,7 +138,24 @@ def main():
                 display()
 
 
-    thread.join()
+def main():
+
+    jobs = []
+
+    #starting up ball tracking thread
+    ball_thread = threading.Thread(target=ball_tracking())
+    client_thread = threading.Thread(target=client())
+    jobs.append(ball_thread)
+    jobs.append(client_thread)
+
+    for j in jobs:
+        j.start()
+
+    for j in jobs:
+        j.join()
+
+
+
     print("process completed")
 
 
