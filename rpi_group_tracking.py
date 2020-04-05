@@ -7,7 +7,7 @@ import cv2
 import imutils
 import time
 import pantilthat
-import threading
+import multiprocessing
 
 import socket, select, string, sys
 
@@ -144,8 +144,8 @@ def main():
     jobs = []
 
     #starting up ball tracking thread
-    ball_thread = threading.Thread(target=ball_tracking())
-    client_thread = threading.Thread(target=client, args=(name, host,))
+    ball_thread = multiprocessing.Thread(target=ball_tracking())
+    client_thread = multiprocessing.Thread(target=client, args=(name, host,))
     jobs.append(client_thread)
     jobs.append(ball_thread)
 
