@@ -88,21 +88,9 @@ def ball_tracking():
         # if the 'q' key is pressed, stop the loop
         if key == ord("q"):
             break
-def client():
-    # server setup (client side)
-    '''
-    if len(sys.argv) < 2:
-        host = input("Enter host ip address: ")
-        print(host)
-    else:
-        host = sys.argv[1]
-    '''
+def client(name, host):
     port = 12000
 
-    host = '192.168.1.78'
-    # asks for user name
-    name = "rpi1"
-    #name = input("\33[34m\33[1m CREATING NEW ID:\n Enter username: \33[0m")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
 
@@ -142,12 +130,21 @@ def client():
 
 
 def main():
+    # server setup (client side)
+    if len(sys.argv) < 2:
+        host = input("Enter host ip address: ")
+        print(host)
+    else:
+        host = sys.argv[1]
+
+    # asks for user name
+    name = input("\33[34m\33[1m CREATING NEW ID:\n Enter username: \33[0m")
 
     jobs = []
 
     #starting up ball tracking thread
     ball_thread = threading.Thread(target=ball_tracking())
-    client_thread = threading.Thread(target=client())
+    client_thread = threading.Thread(target=client(name, host))
     jobs.append(ball_thread)
     jobs.append(client_thread)
 
