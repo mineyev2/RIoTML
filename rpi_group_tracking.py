@@ -90,6 +90,9 @@ def ball_tracking():
             break
 
 def main():
+    #starting up ball tracking thread
+    thread = threading.Thread(target=ball_tracking())
+    thread.start()
 
     #server setup (client side)
     if len(sys.argv) < 2:
@@ -115,9 +118,6 @@ def main():
     # if connected
     s.send(name.encode('utf-8'))
     display()
-
-    thread = threading.Thread(target=ball_tracking())
-    thread.start()
 
 
     while 1:
