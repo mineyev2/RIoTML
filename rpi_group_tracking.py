@@ -144,8 +144,8 @@ def main():
     jobs = []
 
     #starting up ball tracking thread
-    ball_thread = multiprocessing.Thread(target=ball_tracking())
-    client_thread = multiprocessing.Thread(target=client, args=(name, host,))
+    ball_thread = multiprocessing.Process(target=ball_tracking())
+    client_thread = multiprocessing.Process(target=client, args=(name, host, ))
     jobs.append(client_thread)
     jobs.append(ball_thread)
 
