@@ -89,6 +89,7 @@ def ball_tracking():
         if key == ord("q"):
             break
 def client(name, host):
+    print("hello")
     port = 12000
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
