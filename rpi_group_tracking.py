@@ -145,8 +145,9 @@ def main():
     #starting up ball tracking thread
     ball_thread = threading.Thread(target=ball_tracking())
     client_thread = threading.Thread(target=client(name, host))
-    jobs.append(ball_thread)
     jobs.append(client_thread)
+    jobs.append(ball_thread)
+
 
     for j in jobs:
         j.start()
