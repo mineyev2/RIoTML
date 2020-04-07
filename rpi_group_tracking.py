@@ -88,9 +88,18 @@ def ball_tracking():
         # if the 'q' key is pressed, stop the loop
         if key == ord("q"):
             break
-def client(name, host):
+
+def client():
+    if len(sys.argv) < 2:
+        host = input("Enter host ip address: ")
+        print(host)
+    else:
+        host = sys.argv[1]
+
     port = 12000
 
+    # asks for user name
+    name = input("\33[34m\33[1m CREATING NEW ID:\n Enter username: \33[0m")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
 
@@ -104,7 +113,6 @@ def client(name, host):
     # if connected
     s.send(name.encode('utf-8'))
     display()
-
     while 1:
         socket_list = [sys.stdin, s]
 
@@ -131,21 +139,12 @@ def client(name, host):
 
 def main():
     print("Starting up program")
-    # server setup (client side)
-    if len(sys.argv) < 2:
-        host = input("Enter host ip address: ")
-        print(host)
-    else:
-        host = sys.argv[1]
-
-    # asks for user name
-    name = input("\33[34m\33[1m CREATING NEW ID:\n Enter username: \33[0m")
 
     jobs = []
 
     #starting up ball tracking thread
     #ball_thread = multiprocessing.Process(target=ball_tracking())
-    client_thread = multiprocessing.Process(target=client, args=(name, host, ))
+    client_thread = multiprocessing.Process(target=client)
     jobs.append(client_thread)
     #jobs.append(ball_thread)
 
