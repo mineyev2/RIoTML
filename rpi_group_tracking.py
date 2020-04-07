@@ -91,12 +91,15 @@ def ball_tracking():
         pts.appendleft(center)
 
 def main():
+    ball_tracking()
     '''
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
         print(host)
     else:
         host = sys.argv[1]
+    '''
+
     '''
     host = '192.168.1.78'
     port = 12000
@@ -138,7 +141,8 @@ def main():
                 msg = sys.stdin.readline()
                 s.send(msg.encode('utf-8'))
                 display()
-
+                
+    '''
 
 if __name__ == "__main__":
     main()
