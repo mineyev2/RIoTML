@@ -10,6 +10,8 @@ import imutils
 import time
 import pantilthat
 
+import threading
+
 #Helper function (formatting)
 def display() :
 	you="\33[33m\33[1m"+" You: "+"\33[0m"
@@ -91,8 +93,9 @@ def ball_tracking():
         pts.appendleft(center)
 
 def main():
-    ball_tracking()
-    '''
+
+    ball_tracking_thread = threading.Thread(target=ball_tracking())
+    ball_tracking_thread.start()
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
         print(host)
@@ -141,8 +144,8 @@ def main():
                 msg = sys.stdin.readline()
                 s.send(msg.encode('utf-8'))
                 display()
-                
-    '''
+
+    ball_tracking_thread.join()
 
 if __name__ == "__main__":
     main()
