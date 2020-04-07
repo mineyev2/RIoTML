@@ -139,6 +139,7 @@ def client():
 
 def main():
     print("Starting up program")
+    name = input("whats your name")
 
     jobs = []
 
