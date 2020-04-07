@@ -1,3 +1,5 @@
+import socket, select, string, sys
+
 # import the necessary packages
 from collections import deque
 from imutils.video import VideoStream
@@ -7,15 +9,6 @@ import cv2
 import imutils
 import time
 import pantilthat
-import multiprocessing
-
-import socket, select, string, sys
-
-#Helper function (formatting)
-def display() :
-	you="\33[33m\33[1m"+" You: "+"\33[0m"
-	sys.stdout.write(you)
-	sys.stdout.flush()
 
 def ball_tracking():
     # construct the argument parse and parse the arguments
@@ -77,19 +70,21 @@ def ball_tracking():
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
+            # only proceed if the radius meets a minimum size
+            if radius > 10:
+                # draw the circle and centroid on the frame,
+                # then update the list of tracked points
+                cv2.circle(frame, (int(x), int(y)), int(radius),
+                           (0, 255, 255), 2)
+                cv2.circle(frame, center, 5, (0, 0, 255), -1)
+
             pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
             pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
 
         # update the points queue
         pts.appendleft(center)
 
-        key = cv2.waitKey(1) & 0xFF
-
-        # if the 'q' key is pressed, stop the loop
-        if key == ord("q"):
-            break
-
-def client():
+def main():
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
         print(host)
@@ -135,30 +130,6 @@ def client():
                 msg = sys.stdin.readline()
                 s.send(msg.encode('utf-8'))
                 display()
-
-
-def main():
-    print("Starting up program")
-    name = input("whats your name")
-
-    jobs = []
-
-    #starting up ball tracking thread
-    #ball_thread = multiprocessing.Process(target=ball_tracking())
-    client_thread = multiprocessing.Process(target=client)
-    jobs.append(client_thread)
-    #jobs.append(ball_thread)
-
-
-    for j in jobs:
-        j.start()
-
-    for j in jobs:
-        j.join()
-
-
-
-    print("process completed")
 
 
 if __name__ == "__main__":
