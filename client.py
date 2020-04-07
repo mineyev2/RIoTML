@@ -41,15 +41,15 @@ def main():
             #incoming message from server
             if sock == s:
                 data = sock.recv(4096).decode()
-                if not data :
+                if not data:
                     print('\33[31m\33[1m \rDISCONNECTED!!\n \33[0m')
                     sys.exit()
-                else :
+                else:
                     sys.stdout.write(data)
                     display()
         
             #user entered a message
-            else :
+            else:
                 msg=sys.stdin.readline()
                 s.send(msg.encode('utf-8'))
                 display()
