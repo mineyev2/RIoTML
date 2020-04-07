@@ -10,6 +10,12 @@ import imutils
 import time
 import pantilthat
 
+#Helper function (formatting)
+def display() :
+	you="\33[33m\33[1m"+" You: "+"\33[0m"
+	sys.stdout.write(you)
+	sys.stdout.flush()
+
 def ball_tracking():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
