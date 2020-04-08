@@ -13,6 +13,8 @@ import pantilthat
 import threading
 import logging
 
+import msvcrt
+
 #Helper function (formatting)
 def display() :
 	you="\33[33m\33[1m"+" You: "+"\33[0m"
@@ -92,6 +94,10 @@ def ball_tracking():
 
         # update the points queue
         pts.appendleft(center)
+
+        if msvcrt.kbhit():
+            key_stroke = msvcrt.getch()
+            print(key_stroke)
 
 def main():
 
