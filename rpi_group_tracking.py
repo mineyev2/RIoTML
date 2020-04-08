@@ -113,7 +113,7 @@ def main():
     hello_thread.start()
     '''
 
-    ball_tracking_thread = multiprocessing.Process(target=ball_tracking())
+    ball_tracking_thread = multiprocessing.Process(target=ball_tracking)
     ball_tracking_thread.start()
     print("Starting server now")
 
