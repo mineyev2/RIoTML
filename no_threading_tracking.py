@@ -137,7 +137,6 @@ def main():
     s.send(name.encode('utf-8'))
     display()
     while 1:
-        '''
         socket_list = [sys.stdin, s]
 
         # Get the list of sockets which are readable
@@ -160,7 +159,7 @@ def main():
                 s.send(msg.encode('utf-8'))
                 display()
         #print("running ball tracking")
-        '''
+
         # grab the current frame
         frame = vs.read()
 
