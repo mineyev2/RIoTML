@@ -14,7 +14,7 @@ import threading
 import multiprocessing
 import time
 
-client_input = ""
+client_input = "turning on"
 
 def wait_for_input():
     client_input = sys.stdin.readline()
@@ -143,8 +143,8 @@ def main():
     s.send(name.encode('utf-8'))
     display()
 
-    get_input = threading.Thread(target=wait_for_input())
-    get_input.start()
+    #get_input = threading.Thread(target=wait_for_input())
+    #get_input.start()
 
     while 1:
         socket_list = [sys.stdin, s]
