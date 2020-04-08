@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4355474d-d23f-4df5-a25f-abfbc67e7521" name="Default Changelist" comment="" />
+    <list default="true" id="4355474d-d23f-4df5-a25f-abfbc67e7521" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/no_threading_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/no_threading_tracking.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/rpi_group_tracking.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="307">
-              <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
+              <caret line="109" column="13" selection-end-line="162" selection-end-column="10" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -54,10 +56,24 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/no_threading_tracking.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="160" column="36" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -190,7 +206,7 @@
     <entry file="file://$PROJECT_DIR$/rpi_group_tracking.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
-          <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
+          <caret line="109" column="13" selection-end-line="162" selection-end-column="10" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
@@ -198,7 +214,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/no_threading_tracking.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="160" column="36" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

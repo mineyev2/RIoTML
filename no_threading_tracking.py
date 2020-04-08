@@ -158,7 +158,7 @@ def main():
                 msg = sys.stdin.readline()
                 s.send(msg.encode('utf-8'))
                 display()
-
+        print("running ball tracking")
         # grab the current frame
         frame = vs.read()
 
