@@ -10,10 +10,7 @@ import imutils
 import time
 import pantilthat
 
-import threading
-import logging
-
-import keyboard
+import multiprocessing
 
 #Helper function (formatting)
 def display() :
@@ -100,12 +97,10 @@ def ball_tracking():
 
 def main():
 
-    ball_tracking_thread = threading.Thread(target=ball_tracking(), args=())
+    ball_tracking_thread = multiprocessing.Process(target=ball_tracking())
     ball_tracking_thread.start()
     print("Starting server now")
-    '''
-
-    '''
+    
     host = '192.168.1.78'
     port = 12000
 
