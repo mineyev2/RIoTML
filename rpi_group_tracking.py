@@ -13,7 +13,7 @@ import pantilthat
 import threading
 import logging
 
-import msvcrt
+import keyboard
 
 #Helper function (formatting)
 def display() :
@@ -95,9 +95,9 @@ def ball_tracking():
         # update the points queue
         pts.appendleft(center)
 
-        if msvcrt.kbhit():
-            key_stroke = msvcrt.getch()
-            print(key_stroke)
+        if keyboard.is_pressed('q'):
+            break;
+
 
 def main():
 
