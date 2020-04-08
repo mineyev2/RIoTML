@@ -101,6 +101,7 @@ def ball_tracking():
         pts.appendleft(center)
 
 def main():
+    global client_input
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-b", "--buffer", type=int, default=64,
@@ -169,7 +170,7 @@ def main():
                     s.send(client_input.encode('utf-8'))
                     display()
                     client_input = ""
-                    get_input = threading.Thread(target=wait_for_input)
+                    get_input = multiprocessing.Process(target=wait_for_input)
                     get_input.start()
 
         #print("running ball tracking")
