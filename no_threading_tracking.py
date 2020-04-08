@@ -169,7 +169,7 @@ def main():
                     s.send(client_input.encode('utf-8'))
                     display()
                     client_input = ""
-                    get_input = threading.Thread(target=wait_for_input())
+                    get_input = threading.Thread(target=wait_for_input)
                     get_input.start()
 
         #print("running ball tracking")

@@ -105,8 +105,8 @@ def hello():
         time.sleep(1)
 
 def main():
-    hi_thread = multiprocessing.Process(target=hi())
-    hello_thread = multiprocessing.Process(target=hello())
+    hi_thread = multiprocessing.Process(target=hi)
+    hello_thread = multiprocessing.Process(target=hello)
     hi_thread.start()
     hello_thread.start()
 
