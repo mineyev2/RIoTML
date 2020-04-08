@@ -11,6 +11,7 @@ import time
 import pantilthat
 
 import threading
+import logging
 
 #Helper function (formatting)
 def display() :
@@ -97,7 +98,7 @@ def main():
     ball_tracking_thread = threading.Thread(target=ball_tracking(), args=())
     ball_tracking_thread.start()
 
-    print("ball_tracking thread started")
+    logging.info("ball_tracking thread started")
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
         print(host)
