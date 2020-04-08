@@ -118,7 +118,7 @@ def main():
     print("Starting server now")
 
     host = '192.168.1.78'
-    port = 12000
+    port = 11000
 
     # asks for user name
     name = input("\33[34m\33[1m CREATING NEW ID:\n Enter username: \33[0m")
