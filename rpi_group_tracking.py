@@ -94,14 +94,24 @@ def ball_tracking():
         # update the points queue
         pts.appendleft(center)
 
-def test():
+def hi():
     while True:
         print("hi")
         time.sleep(1)
 
-def main():
+def hello():
+    while True:
+        print("hello")
+        time.sleep(1)
 
-    ball_tracking_thread = multiprocessing.Process(target=test())
+def main():
+    hi_thread = multiprocessing.Process(target=hi())
+    hello_thread = multiprocessing.Process(target=hello())
+    hi_thread.start()
+    hello_thread.start()
+
+'''
+    ball_tracking_thread = multiprocessing.Process(target=ball_tracking())
     ball_tracking_thread.start()
     print("Starting server now")
 
@@ -147,6 +157,7 @@ def main():
                 display()
 
     #ball_tracking_thread.join()
+'''
 
 if __name__ == "__main__":
     main()
