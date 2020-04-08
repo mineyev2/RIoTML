@@ -44,7 +44,8 @@ def ball_tracking():
     time.sleep(2.0)
 
     # keep looping
-    while True:
+    keep_looping = True
+    while keep_looping:
         # grab the current frame
         frame = vs.read()
 
@@ -94,20 +95,14 @@ def ball_tracking():
 
         # update the points queue
         pts.appendleft(center)
-        break
+
 
 
 def main():
 
     ball_tracking_thread = threading.Thread(target=ball_tracking(), args=())
     ball_tracking_thread.start()
-
-    logging.info("ball_tracking thread started")
-    if len(sys.argv) < 2:
-        host = input("Enter host ip address: ")
-        print(host)
-    else:
-        host = sys.argv[1]
+    print("Starting server now")
     '''
 
     '''
