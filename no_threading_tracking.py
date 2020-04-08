@@ -10,8 +10,14 @@ import imutils
 import time
 import pantilthat
 
+import threading
 import multiprocessing
 import time
+
+client_input = ""
+
+def wait_for_input():
+    client_input = sys.stdin.readline()
 
 #Helper function (formatting)
 def display() :
@@ -136,6 +142,10 @@ def main():
     # if connected
     s.send(name.encode('utf-8'))
     display()
+
+    get_input = threading.Thread(target=wait_for_input())
+    get_input.start()
+
     while 1:
         socket_list = [sys.stdin, s]
 
@@ -155,9 +165,13 @@ def main():
 
             # user entered a message
             else:
-                msg = sys.stdin.readline()
-                s.send(msg.encode('utf-8'))
-                display()
+                if(client_input != ""):
+                    s.send(client_input.encode('utf-8'))
+                    display()
+                    client_input = ""
+                    get_input = threading.Thread(target=wait_for_input())
+                    get_input.start()
+
         #print("running ball tracking")
 
         # grab the current frame
