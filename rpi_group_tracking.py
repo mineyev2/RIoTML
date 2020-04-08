@@ -96,6 +96,7 @@ def main():
 
     ball_tracking_thread = threading.Thread(target=ball_tracking())
     ball_tracking_thread.start()
+    print("ball_tracking thread started")
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
         print(host)

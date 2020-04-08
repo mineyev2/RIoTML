@@ -45,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rpi_group_tracking.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="96" column="44" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="44" />
+            <state relative-caret-position="224">
+              <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -195,8 +195,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rpi_group_tracking.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="96" column="44" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="44" />
+        <state relative-caret-position="224">
+          <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
