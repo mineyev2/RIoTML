@@ -11,6 +11,7 @@ import time
 import pantilthat
 
 import multiprocessing
+import time
 
 #Helper function (formatting)
 def display() :
@@ -93,14 +94,17 @@ def ball_tracking():
         # update the points queue
         pts.appendleft(center)
 
-
+def test():
+    while True:
+        print("hi")
+        time.sleep(1)
 
 def main():
 
-    ball_tracking_thread = multiprocessing.Process(target=ball_tracking())
+    ball_tracking_thread = multiprocessing.Process(target=test())
     ball_tracking_thread.start()
     print("Starting server now")
-    
+
     host = '192.168.1.78'
     port = 12000
 
