@@ -94,9 +94,7 @@ def ball_tracking():
 
         # update the points queue
         pts.appendleft(center)
-
-        if keyboard.is_pressed('q'):
-            break;
+        break
 
 
 def main():
