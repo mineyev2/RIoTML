@@ -94,8 +94,9 @@ def ball_tracking():
 
 def main():
 
-    ball_tracking_thread = threading.Thread(target=ball_tracking())
+    ball_tracking_thread = threading.Thread(target=ball_tracking(), args=())
     ball_tracking_thread.start()
+
     print("ball_tracking thread started")
     if len(sys.argv) < 2:
         host = input("Enter host ip address: ")
@@ -146,7 +147,7 @@ def main():
                 s.send(msg.encode('utf-8'))
                 display()
 
-    ball_tracking_thread.join()
+    #ball_tracking_thread.join()
 
 if __name__ == "__main__":
     main()
