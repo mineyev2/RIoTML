@@ -76,7 +76,7 @@ def main():
     #get_input.start()
 
     while 1:
-        socket_list = [s]
+        socket_list = [sys.stdin, s]
 
         # Get the list of sockets which are readable
         #MAKE SURE TO USE 0 at the end
@@ -127,6 +127,7 @@ def main():
                 msg="found the ball"
                 s.send(msg.encode('utf-8'))
                 display()
+                found = True
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
             # centroid
@@ -137,8 +138,10 @@ def main():
 
             pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
             pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
+        '''
         else:
-            found = True
+            found = False
+        '''
         # update the points queue
         pts.appendleft(center)
 if __name__ == "__main__":
