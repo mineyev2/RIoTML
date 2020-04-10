@@ -91,11 +91,9 @@ def main():
 
             # user entered a message
             else:
-                print(sys.stdin)
-                for line in sys.stdin:
-                    msg = line.rstrip()
-                    s.send(msg.encode('utf-8'))
-                    display()
+                msg = sys.stdin.readline()
+                s.send(msg.encode('utf-8'))
+                display()
                 '''
                 if(client_input != ""):
                     s.send(client_input.encode('utf-8'))
