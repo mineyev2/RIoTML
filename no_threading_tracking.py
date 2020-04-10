@@ -54,7 +54,9 @@ def main():
     port = 11000
 
     # asks for user name
-    name = input("\33[34m\33[1m CREATING NEW ID:\n Enter username: \33[0m")
+    file = open("../number.txt", "r")
+    name = file.read()
+    file.close()
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
 
@@ -73,9 +75,11 @@ def main():
     #get_input.start()
 
     while 1:
-        socket_list = [sys.stdin, s]
+        socket_list = [s]
 
         # Get the list of sockets which are readable
+        #MAKE SURE TO USE 0 at the end
+        #0 means that select will not wait for server messages or sys.stdin to actually have an output. Otherwise the while loop gets blocked here and the ball_tracking section will not run.
         rList, wList, error_list = select.select(socket_list, [], [], 0)
 
         for sock in rList:
@@ -88,20 +92,6 @@ def main():
                 else:
                     sys.stdout.write(data)
                     display()
-
-            # user entered a message
-            else:
-                msg = sys.stdin.readline()
-                s.send(msg.encode('utf-8'))
-                display()
-                '''
-                if(client_input != ""):
-                    s.send(client_input.encode('utf-8'))
-                    display()
-                    client_input = ""
-                    get_input = multiprocessing.Process(target=wait_for_input)
-                    get_input.start()
-               '''
         #print("running ball tracking")
 
         # grab the current frame
