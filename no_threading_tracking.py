@@ -125,8 +125,8 @@ def main():
         if len(cnts) > 0:
             if(not found):
                 msg="found the ball"
-                 s.send(msg.encode('utf-8'))
-                 display()
+                s.send(msg.encode('utf-8'))
+                display()
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
             # centroid
