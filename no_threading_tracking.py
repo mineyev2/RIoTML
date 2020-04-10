@@ -126,7 +126,7 @@ def main():
             if(not found):
                 s.send('found ball'.encode('utf-8'))
                 found = False
-            display()
+                display()
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
             # centroid
@@ -140,7 +140,7 @@ def main():
 
         # update the points queue
         pts.appendleft(center)
-    else:
-        found = True
+        else:
+            found = True
 if __name__ == "__main__":
     main()
