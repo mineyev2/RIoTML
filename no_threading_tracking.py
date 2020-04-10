@@ -26,7 +26,7 @@ def display() :
 	sys.stdout.flush()
 
 def main():
-    found = True
+    found = False
     global client_input
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
@@ -124,10 +124,9 @@ def main():
         # only proceed if at least one contour was found
         if len(cnts) > 0:
             if(not found):
-                msg = 'found ball'
-                s.send(msg.encode('utf-8'))
-                found = False
-                display()
+                msg="found the ball")
+                 s.send(msg.encode('utf-8'))
+                 display()
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
             # centroid
