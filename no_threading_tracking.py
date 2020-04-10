@@ -91,6 +91,7 @@ def main():
 
             # user entered a message
             else:
+                print(sys.stdin)
                 for line in sys.stdin:
                     msg = line.rstrip()
                     s.send(msg.encode('utf-8'))
