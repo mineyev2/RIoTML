@@ -26,6 +26,7 @@ def display() :
 	sys.stdout.flush()
 
 def main():
+    found = True
     global client_input
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
@@ -122,6 +123,10 @@ def main():
 
         # only proceed if at least one contour was found
         if len(cnts) > 0:
+            if(!found):
+                s.send('found ball'.encode('utf-8'))
+                found = False
+            display()
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
             # centroid
@@ -130,19 +135,12 @@ def main():
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
-            # only proceed if the radius meets a minimum size
-            if radius > 10:
-                # draw the circle and centroid on the frame,
-                # then update the list of tracked points
-                cv2.circle(frame, (int(x), int(y)), int(radius),
-                           (0, 255, 255), 2)
-                cv2.circle(frame, center, 5, (0, 0, 255), -1)
-
             pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
             pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
 
         # update the points queue
         pts.appendleft(center)
-
+    else:
+        found = True
 if __name__ == "__main__":
     main()

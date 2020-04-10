@@ -45,7 +45,7 @@ if __name__ == "__main__":
 				connected_list.append(sockfd)
 				record[addr]=""
 				#print "record and conn list ",record,connected_list
-                
+
                 #if repeated username
 				if name in record.values():
 					sockfd.send("\r\33[31m\33[1m Username already taken!\n\33[0m")
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 					#print "sock is: ",sock
 					data=data1[:data1.index("\n")]
 					#print "\ndata received: ",data
-                    
+
                     #get addr of client sending the message
 					i,p=sock.getpeername()
 					if data == "tata":
@@ -84,7 +84,7 @@ if __name__ == "__main__":
 					else:
 						msg="\r\33[1m"+"\33[35m "+record[(i,p)]+": "+"\33[0m"+data+"\n"
 						send_to_all(sock,msg)
-            
+
                 #abrupt user exit
 				except:
 					(i,p)=sock.getpeername()
