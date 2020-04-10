@@ -76,7 +76,7 @@ def main():
         socket_list = [sys.stdin, s]
 
         # Get the list of sockets which are readable
-        rList, wList, error_list = select.select(socket_list, [], [])
+        rList, wList, error_list = select.select(socket_list, [], [], 0)
 
         for sock in rList:
             # incoming message from server
