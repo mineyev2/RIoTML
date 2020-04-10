@@ -123,7 +123,7 @@ def main():
 
         # only proceed if at least one contour was found
         if len(cnts) > 0:
-            if(!found):
+            if(not found):
                 s.send('found ball'.encode('utf-8'))
                 found = False
             display()
