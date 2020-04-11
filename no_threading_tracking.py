@@ -56,7 +56,7 @@ def main():
 
     # asks for user name
     file = open("../number.txt", "r")
-    name = input("what is your name?")
+    name = file.read()
     file.close()
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
@@ -125,7 +125,7 @@ def main():
         if len(cnts) > 0:
             if(not found):
                 msg='hello'
-                print("ball found")
+                print(msg.encode('utf-8'))
                 s.send(msg.encode('utf-8'))
                 display()
                 found = True
