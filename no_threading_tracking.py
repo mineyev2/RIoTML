@@ -126,7 +126,7 @@ def main():
             if(not found):
                 msg='hello'
                 print("ball found")
-                s.send(msg.encode()
+                s.send(msg.encode())
                 display()
                 found = True
             # find the largest contour in the mask, then use
