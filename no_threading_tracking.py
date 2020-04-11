@@ -137,8 +137,22 @@ def main():
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
             #need to set bounds for the values here eventually so it doesn't crash when the desired angle is over 90 or under -90
-            pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
-            pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
+            pan = pantilthat.get_pan() + (center[0] - 300) / 50
+            tilt = pantilthat.get_tilt() + (center[1] - 240) / 50
+            if(pan > 90):
+                pantilthat.pan(90)
+            elif(pan < -90):
+                pantilthat.pan(-90)
+            else:
+                pantilthat.pan(pan)
+
+            if(tilt > 90):
+                pantilthat.tilt(90)
+            elif(tilt < -90):
+                pantilthat.tilt(-90)
+            else:
+                pantilthat.tilt(tilt)
+
         else:
             found = False
 
