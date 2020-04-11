@@ -144,9 +144,12 @@ def main():
 
             if(pan > 70):
                 msg = '1,' + str(tilt)
-                s.send(msg.encode('utf-8')
-            if(pan < -70):
+                s.send(msg.encode('utf-8'))
+            elif(pan < -70):
                 msg = '2,' + str(tilt)
+                s.send(msg.encode('utf-8'))
+
+
             if(pan > 90):
                 pantilthat.pan(90)
             elif(pan < -90):
