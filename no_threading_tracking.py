@@ -56,7 +56,7 @@ def main():
 
     # asks for user name
     file = open("../number.txt", "r")
-    name = file.read()
+    name = input("what is your name?")
     file.close()
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
