@@ -127,7 +127,7 @@ def main():
                 msg='0'
                 #print(msg.encode('utf-8'))
                 s.send(msg.encode('utf-8'))
-                display()
+                #display()
                 found = True
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
@@ -139,6 +139,14 @@ def main():
             #need to set bounds for the values here eventually so it doesn't crash when the desired angle is over 90 or under -90
             pan = pantilthat.get_pan() + (center[0] - 300) / 50
             tilt = pantilthat.get_tilt() - (center[1] - 240) / 50
+
+            # if past the tick, send message to other pis so they can start tracking too
+
+            if(pan > 70):
+                msg = '1,' + str(tilt)
+                s.send(msg.encode('utf-8')
+            if(pan < -70):
+                msg = '2,' + str(tilt)
             if(pan > 90):
                 pantilthat.pan(90)
             elif(pan < -90):
@@ -158,6 +166,7 @@ def main():
             #pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
         else:
             found = False
+
 
         # update the points queue
         pts.appendleft(center)
