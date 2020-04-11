@@ -136,7 +136,7 @@ def main():
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
-
+            #need to set bounds for the values here eventually so it doesn't crash when the desired angle is over 90 or under -90
             pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
             pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
         else:
