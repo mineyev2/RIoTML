@@ -27,7 +27,7 @@ def display() :
 
 def analyze(message):
     print("\033[1:36:40m" + message)
-    messages = message.rstrip().split(,)
+    messages = message.rstrip().split(',')
 
 
 
