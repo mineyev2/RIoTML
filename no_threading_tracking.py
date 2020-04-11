@@ -18,31 +18,32 @@ client_input = "turning on"
 recieved_y_axis = -1000.0
 found = False
 pan_running = False
+
+
 def wait_for_input():
     client_input = sys.stdin.readline()
 
-#Helper function (formatting)
-def display() :
-	you="\33[33m\33[1m"+" You: "+"\33[0m"
-	sys.stdout.write(you)
-	sys.stdout.flush()
 
-def analyze(message):
+# Helper function (formatting)
+def display():
+    you = "\33[33m\33[1m" + " You: " + "\33[0m"
+    sys.stdout.write(you)
+    sys.stdout.flush()
+
+
+def analyze(message, s):
     print('\x1b[4;33;40m' + message + '\x1b[0m')
 
     messages = message.rstrip().split(',')
 
     try:
         int(messages[0])
-        int(messages[1])
-        float(messages[2])
     except:
-        #print("unreadable")
+        # print("unreadable")
         return
     file = open('../number.txt', 'r')
     number = int(file.read())
-    file.close
-
+    file.close()
 
     global recieved_y_axis
     global pan_running
@@ -51,23 +52,17 @@ def analyze(message):
     direction = int(messages[1])
     y_axis = float(messages[2])
 
-    #checks each kind of message that could be delivered
+    # checks each kind of message that could be delivered
 
-    #first, checks if message was sent for this pi by seeing if the ball is coming towards it
-    if(rpi_number + direction == number):
+    # first, checks if message was sent for this pi by seeing if the ball is coming towards it
+    if (rpi_number + direction == number):
         recieved_y_axis = y_axis
-        if(not pan_running):
-            thread = threading.Thread(target=pan_till_detected, args=(direction,))
+        if (not pan_running):
+            thread = threading.Thread(target=pan_till_detected, args=(direction, s, ))
             thread.start()
-        #then checks from which direction it is coming
-        if(direction > 0):
-            print("to the right")
 
-            #later, run function to slowly move right while adjusting based on messages[2] (the y-axis) until the ball is detected.
-        if(direction < 0):
-            print("to the left")
 
-def pan_till_detected(direction):
+def pan_till_detected(direction, s):
     global pan_running
     global found
     global recieved_y_axis
@@ -76,11 +71,16 @@ def pan_till_detected(direction):
 
     turn_amt = 1
     sleep_interval = .07
-    while(abs(pan_angle) + turn_amt < 90 and not found):
-        pantilthat.pan(pan_angle + (-1*direction)*turn_amt)
+    while (abs(pan_angle) + turn_amt < 90 and not found):
+        pantilthat.pan(pan_angle + (-1 * direction) * turn_amt)
         pantilthat.tilt(recieved_y_axis)
         time.sleep(.07)
         pan_angle = pantilthat.get_pan()
+
+    msg = '3'
+    print(msg)
+    s.send(msg.encode('utf-8'))
+
     '''
     if(direction > 0):
         while(pan_angle > -90):
@@ -93,6 +93,8 @@ def pan_till_detected(direction):
             pantilthat.pan(pan_angle + 1)
             time.sleep(.07)
     '''
+
+
 def main():
     global found
     global client_input
@@ -138,17 +140,17 @@ def main():
 
     # if connected
     s.send(name.encode('utf-8'))
-    #display()
+    # display()
 
-    #get_input = threading.Thread(target=wait_for_input())
-    #get_input.start()
+    # get_input = threading.Thread(target=wait_for_input())
+    # get_input.start()
 
     while 1:
         socket_list = [s]
 
         # Get the list of sockets which are readable
-        #MAKE SURE TO USE 0 at the end
-        #0 means that select will not wait for server messages or sys.stdin to actually have an output. Otherwise the while loop gets blocked here and the ball_tracking section will not run.
+        # MAKE SURE TO USE 0 at the end
+        # 0 means that select will not wait for server messages or sys.stdin to actually have an output. Otherwise the while loop gets blocked here and the ball_tracking section will not run.
         rList, wList, error_list = select.select(socket_list, [], [], 0)
 
         for sock in rList:
@@ -159,11 +161,11 @@ def main():
                     print('\33[31m\33[1m \rDISCONNECTED!!\n \33[0m')
                     sys.exit()
                 else:
-                    #read the data from other pis
-                    #sys.stdout.write(data)
-                    analyze(data)
-                    #display()
-        #print("running ball tracking")
+                    # read the data from other pis
+                    # sys.stdout.write(data)
+                    analyze(data, s)
+                    # display()
+        # print("running ball tracking")
 
         # grab the current frame
         frame = vs.read()
@@ -193,11 +195,11 @@ def main():
 
         # only proceed if at least one contour was found
         if len(cnts) > 0:
-            if(not found):
-                msg='0'
-                #print(msg.encode('utf-8'))
+            if (not found):
+                msg = '0'
+                # print(msg.encode('utf-8'))
                 s.send(msg.encode('utf-8'))
-                #display()
+                # display()
                 found = True
             # find the largest contour in the mask, then use
             # it to compute the minimum enclosing circle and
@@ -206,45 +208,48 @@ def main():
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
-            #need to set bounds for the values here eventually so it doesn't crash when the desired angle is over 90 or under -90
+            # need to set bounds for the values here eventually so it doesn't crash when the desired angle is over 90 or under -90
             pan = pantilthat.get_pan() + (center[0] - 300) / 50
             tilt = pantilthat.get_tilt() - (center[1] - 240) / 50
 
             # if past the tick, send message to other pis so they can start tracking too
 
-            if(pan > 70):
+            if (pan > 70):
                 msg = '1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
-            elif(pan < -70):
+            elif (pan < -70):
                 msg = '-1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
+            else:
+                msg = '2'
+                print(msg)
+                s.send(msg.encode('utf-8'))
 
-
-            if(pan > 90):
+            if (pan > 90):
                 pantilthat.pan(90)
-            elif(pan < -90):
+            elif (pan < -90):
                 pantilthat.pan(-90)
             else:
                 pantilthat.pan(pan)
 
-            if(tilt > 90):
+            if (tilt > 90):
                 pantilthat.tilt(90)
-            elif(tilt < -90):
+            elif (tilt < -90):
                 pantilthat.tilt(-90)
             else:
                 pantilthat.tilt(tilt)
 
-
-            #pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
-            #pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
+            # pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
+            # pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
         else:
-            #if(
+            # if(
             found = False
-
 
         # update the points queue
         pts.appendleft(center)
+
+
 if __name__ == "__main__":
     main()
