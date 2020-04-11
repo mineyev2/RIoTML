@@ -92,8 +92,8 @@ if __name__ == "__main__":
                         continue
 
                     else:
-                        msg = "\r\33[1m"+"\33[35m " + \
-                            record[(i, p)]+": "+"\33[0m"+data+"\n"
+                        #make sure to strip the enter key in no_threading
+                        msg = record[(i, p)]+data+"\n"
                         send_to_all(sock, msg)
 
         # abrupt user exit

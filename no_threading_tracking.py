@@ -25,6 +25,13 @@ def display() :
 	sys.stdout.write(you)
 	sys.stdout.flush()
 
+def analyze(message):
+    print("\033[1:36:40m" + message)
+    messages = message.rstrip().split(,)
+
+
+
+
 def main():
     found = False
     global client_input
@@ -70,7 +77,7 @@ def main():
 
     # if connected
     s.send(name.encode('utf-8'))
-    display()
+    #display()
 
     #get_input = threading.Thread(target=wait_for_input())
     #get_input.start()
@@ -91,8 +98,9 @@ def main():
                     print('\33[31m\33[1m \rDISCONNECTED!!\n \33[0m')
                     sys.exit()
                 else:
+                    #read the data from other pis
                     sys.stdout.write(data)
-                    display()
+                    #display()
         #print("running ball tracking")
 
         # grab the current frame
@@ -147,7 +155,7 @@ def main():
                 print(msg)
                 s.send(msg.encode('utf-8'))
             elif(pan < -70):
-                msg = '2,' + str(tilt)
+                msg = '-1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
 
@@ -170,6 +178,7 @@ def main():
             #pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
             #pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
         else:
+            #if(
             found = False
 
 
