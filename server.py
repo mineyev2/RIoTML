@@ -74,7 +74,8 @@ if __name__ == "__main__":
                 try:
                     data1 = sock.recv(buffer).decode()
                     # print "sock is: ",sock
-                    data = data1[:data1.index("\n")]
+                    #commented this out because since we are directly sending messages we are never typing the enter key
+                    #data = data1[:data1.index("\n")]
                     # print "\ndata received: ",data
 
     # get addr of client sending the message
