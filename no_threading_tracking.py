@@ -124,7 +124,7 @@ def main():
         # only proceed if at least one contour was found
         if len(cnts) > 0:
             if(not found):
-                msg="hello"
+                msg='hello'
                 print("ball found")
                 #s.send(msg.encode())
                 display()
