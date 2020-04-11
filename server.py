@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
                     else:
                         #make sure to strip the enter key in no_threading
-                        msg = record[(i, p)]+data+"\n"
+                        msg = record[(i, p)].rstrip()+','+data+"\n"
                         send_to_all(sock, msg)
 
         # abrupt user exit

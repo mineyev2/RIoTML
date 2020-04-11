@@ -26,7 +26,7 @@ def display() :
 	sys.stdout.flush()
 
 def analyze(message):
-    print('\x1b[0;34;40m' + message + '\x1b[0m')
+    print('\x1b[4;33;40m' + message + '\x1b[0m')
     messages = message.rstrip().split(',')
 
 
