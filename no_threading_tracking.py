@@ -138,7 +138,7 @@ def main():
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
             #need to set bounds for the values here eventually so it doesn't crash when the desired angle is over 90 or under -90
             pan = pantilthat.get_pan() + (center[0] - 300) / 50
-            tilt = pantilthat.get_tilt() + (center[1] - 240) / 50
+            tilt = pantilthat.get_tilt() - (center[1] - 240) / 50
             if(pan > 90):
                 pantilthat.pan(90)
             elif(pan < -90):
@@ -153,6 +153,9 @@ def main():
             else:
                 pantilthat.tilt(tilt)
 
+
+            #pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
+            #pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
         else:
             found = False
 
