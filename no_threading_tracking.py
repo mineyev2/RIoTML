@@ -63,6 +63,7 @@ def analyze(message):
             print("to the left")
 
 def pan_till_detected(direction):
+    print("pan till detected is running")
     pan_angle = pantilthat.get_pan()
     if(direction > 0):
         while(pan_angle > -90):
