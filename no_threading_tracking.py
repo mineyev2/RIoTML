@@ -124,7 +124,7 @@ def main():
         # only proceed if at least one contour was found
         if len(cnts) > 0:
             if(not found):
-                msg='0\n'
+                msg='0'
                 print(msg.encode('utf-8'))
                 s.send(msg.encode('utf-8'))
                 display()
