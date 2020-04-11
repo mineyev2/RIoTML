@@ -72,7 +72,7 @@ if __name__ == "__main__":
             else:
                 # Data from client
                 try:
-                    data1 = sock.recv(buffer).decode()
+                    data = sock.recv(buffer).decode()
                     # print "sock is: ",sock
                     #commented this out because since we are directly sending messages we are never typing the enter key
                     #data = data1[:data1.index("\n")]
