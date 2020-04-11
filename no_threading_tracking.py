@@ -66,17 +66,26 @@ def analyze(message):
 def pan_till_detected(direction):
     print("pan till detected is running")
     pan_angle = pantilthat.get_pan()
+
+    turn_amt = 1
+    sleep_interval = .07
+    while(abs(pan_angle) + turn_amt < 90):
+        pantilthat.pan(pan_angle + (-1*direction)*turn_amt)
+        time.sleep(.07)
+        pan_angle = pantilthat.get_pan()
+
+    '''
     if(direction > 0):
         while(pan_angle > -90):
             pan_angle = pantilthat.get_pan()
-            pantilthat.pan(pan_angle - 2)
-            time.sleep(.2)
+            pantilthat.pan(pan_angle - 1)
+            time.sleep(.07)
     else:
         while(pan_angle < 90):
             pan_angle = pantilthat.get_pan()
-            pantilthat.pan(pan_angle + 2)
-            time.sleep(.2)
-
+            pantilthat.pan(pan_angle + 1)
+            time.sleep(.07)
+    '''
 def main():
     found = False
     global client_input
