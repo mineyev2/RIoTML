@@ -76,7 +76,7 @@ def main():
     #get_input.start()
 
     while 1:
-        socket_list = [sys.stdin, s]
+        socket_list = [s]
 
         # Get the list of sockets which are readable
         #MAKE SURE TO USE 0 at the end
