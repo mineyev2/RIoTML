@@ -86,7 +86,8 @@ if __name__ == "__main__":
 						send_to_all(sock,msg)
 
                 #abrupt user exit
-				except:
+				except Exception as e:
+                                        print(e)
 					(i,p)=sock.getpeername()
 					send_to_all(sock, "\r\33[31m \33[1m"+record[(i,p)]+" left the conversation unexpectedly\33[0m\n")
 					print("Client (%s, %s) is offline (error)" % (i,p)," [",record[(i,p)],"]\n")
