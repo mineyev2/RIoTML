@@ -56,7 +56,7 @@ def analyze(message):
     #first, checks if message was sent for this pi by seeing if the ball is coming towards it
     if(rpi_number + direction == number):
         recieved_y_axis = y_axis
-        if(!pan_running):
+        if(not pan_running):
             thread = threading.Thread(target=pan_till_detected, args=(direction,))
 
         #then checks from which direction it is coming
