@@ -16,6 +16,7 @@ import time
 
 client_input = "turning on"
 recieved_y_axis = -1000.0
+found = False
 def wait_for_input():
     client_input = sys.stdin.readline()
 
@@ -64,16 +65,18 @@ def analyze(message):
             print("to the left")
 
 def pan_till_detected(direction):
+    global found
+    global recieved_y_axis
     print("pan till detected is running")
     pan_angle = pantilthat.get_pan()
 
     turn_amt = 1
     sleep_interval = .07
-    while(abs(pan_angle) + turn_amt < 90):
+    while(abs(pan_angle) + turn_amt < 90 && !found):
         pantilthat.pan(pan_angle + (-1*direction)*turn_amt)
+        pantilthat.tilt(recieved_y_axis)
         time.sleep(.07)
         pan_angle = pantilthat.get_pan()
-
     '''
     if(direction > 0):
         while(pan_angle > -90):
@@ -87,7 +90,7 @@ def pan_till_detected(direction):
             time.sleep(.07)
     '''
 def main():
-    found = False
+    global found
     global client_input
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
