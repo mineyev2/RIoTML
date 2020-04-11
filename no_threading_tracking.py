@@ -26,13 +26,14 @@ def display() :
 	sys.stdout.flush()
 
 def analyze(message):
-    try:
-        int(message)
-    except:
-        return
     print('\x1b[4;33;40m' + message + '\x1b[0m')
+
     messages = message.rstrip().split(',')
 
+    try:
+        int(messages[0])
+    except:
+        return
     file = open('../number.txt', 'r')
     number = int(file.read())
     file.close
