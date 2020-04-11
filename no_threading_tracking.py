@@ -29,6 +29,20 @@ def analyze(message):
     print('\x1b[4;33;40m' + message + '\x1b[0m')
     messages = message.rstrip().split(',')
 
+    file = open('../number.txt', 'r')
+    number = int(file.read())
+    file.close
+
+    #checks each kind of message that could be delivered
+
+    #first, checks if message was sent for this pi by seeing if the ball is coming towards it
+    if(int(messages[0]) + int(messages[1]) == number):
+        #then checks from which direction it is coming
+        if(int(messages[1]) > 0):
+            print("to the right")
+            #later, run function to slowly move right while adjusting based on messages[2] (the y-axis) until the ball is detected.
+        if(int(messages[1]) < 0):
+            print("to the left")
 
 
 
