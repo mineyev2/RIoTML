@@ -124,8 +124,8 @@ def main():
         # only proceed if at least one contour was found
         if len(cnts) > 0:
             if(not found):
-                msg='0'
-                s.send(msg.encode('utf-8'))
+                #msg='0'
+                s.send(b'found')
                 display()
                 found = True
             # find the largest contour in the mask, then use
