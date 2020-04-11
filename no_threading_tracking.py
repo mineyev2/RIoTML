@@ -125,7 +125,7 @@ def main():
         if len(cnts) > 0:
             if(not found):
                 #msg='0'
-                sys.stdout("ball found")
+                print("ball found")
                 s.send(b'found')
                 display()
                 found = True
