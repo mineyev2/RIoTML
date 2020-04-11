@@ -144,9 +144,11 @@ def main():
 
             if(pan > 70):
                 msg = '1,' + str(tilt)
+                print(msg)
                 s.send(msg.encode('utf-8'))
             elif(pan < -70):
                 msg = '2,' + str(tilt)
+                print(msg)
                 s.send(msg.encode('utf-8'))
 
 
