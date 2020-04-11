@@ -139,10 +139,9 @@ def main():
 
             pantilthat.pan(pantilthat.get_pan() + (center[0] - 300) / 50)
             pantilthat.tilt(pantilthat.get_tilt() - (center[1] - 240) / 50)
-        '''
         else:
             found = False
-        '''
+
         # update the points queue
         pts.appendleft(center)
 if __name__ == "__main__":
