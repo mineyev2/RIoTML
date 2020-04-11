@@ -58,7 +58,7 @@ def analyze(message):
         recieved_y_axis = y_axis
         if(not pan_running):
             thread = threading.Thread(target=pan_till_detected, args=(direction,))
-
+            thread.start()
         #then checks from which direction it is coming
         if(direction > 0):
             print("to the right")
