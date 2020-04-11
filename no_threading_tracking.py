@@ -17,6 +17,7 @@ import time
 client_input = "turning on"
 recieved_y_axis = -1000.0
 found = False
+pan_running = False
 def wait_for_input():
     client_input = sys.stdin.readline()
 
@@ -44,6 +45,7 @@ def analyze(message):
 
 
     global recieved_y_axis
+    global pan_running
 
     rpi_number = int(messages[0])
     direction = int(messages[1])
@@ -54,7 +56,8 @@ def analyze(message):
     #first, checks if message was sent for this pi by seeing if the ball is coming towards it
     if(rpi_number + direction == number):
         recieved_y_axis = y_axis
-        pan_till_detected(direction)
+        if(!pan_running):
+            thread = threading.Thread(target=pan_till_detected, args=(direction,))
 
         #then checks from which direction it is coming
         if(direction > 0):
@@ -65,6 +68,7 @@ def analyze(message):
             print("to the left")
 
 def pan_till_detected(direction):
+    global pan_running
     global found
     global recieved_y_axis
     print("pan till detected is running")
