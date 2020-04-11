@@ -125,7 +125,7 @@ def main():
         if len(cnts) > 0:
             if(not found):
                 msg='0'
-                print(msg.encode('utf-8'))
+                #print(msg.encode('utf-8'))
                 s.send(msg.encode('utf-8'))
                 display()
                 found = True
