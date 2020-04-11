@@ -76,7 +76,7 @@ if __name__ == "__main__":
                     # print "sock is: ",sock
                     #commented this out because since we are directly sending messages we are never typing the enter key
                     #data = data1[:data1.index("\n")]
-                    print("\ndata received: ",data)
+                    #print("\ndata received: ",data)
 
     # get addr of client sending the message
                     i, p = sock.getpeername()
