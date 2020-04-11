@@ -76,7 +76,7 @@ def pan_till_detected(direction):
 
     turn_amt = 1
     sleep_interval = .07
-    while(abs(pan_angle) + turn_amt < 90 && !found):
+    while(abs(pan_angle) + turn_amt < 90 and !found):
         pantilthat.pan(pan_angle + (-1*direction)*turn_amt)
         pantilthat.tilt(recieved_y_axis)
         time.sleep(.07)
