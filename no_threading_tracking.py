@@ -35,7 +35,7 @@ def analyze(message):
         int(messages[1])
         float(messages[2])
     except:
-        print("unreadable")
+        #print("unreadable")
         return
     file = open('../number.txt', 'r')
     number = int(file.read())
@@ -69,11 +69,11 @@ def pan_till_detected(direction):
     if(direction > 0):
         while(pan_angle > -90):
             pantilthat.pan(pan_angle - 2)
-            sleep(0.2)
+            time.sleep(0.2)
     else:
         while(pan_angle < 90):
             pantilthat.pan(pan_angle + 2)
-            sleep(0.2)
+            time.sleep(0.2)
 
 def main():
     found = False
