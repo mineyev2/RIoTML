@@ -15,7 +15,7 @@ import multiprocessing
 import time
 
 client_input = "turning on"
-recieved_y_axis = -1000
+recieved_y_axis = -1000.0
 def wait_for_input():
     client_input = sys.stdin.readline()
 
@@ -52,7 +52,7 @@ def analyze(message):
     #first, checks if message was sent for this pi by seeing if the ball is coming towards it
     if(rpi_number + direction == number):
         recieved_y_axis = y_axis
-        #pan_till_detected(direction)
+        pan_till_detected(direction)
 
         #then checks from which direction it is coming
         if(direction > 0):
