@@ -33,8 +33,9 @@ def analyze(message):
     try:
         int(messages[0])
         int(messages[1])
-        int(messages[2])
+        float(messages[2])
     except:
+        print("unreadable")
         return
     file = open('../number.txt', 'r')
     number = int(file.read())
