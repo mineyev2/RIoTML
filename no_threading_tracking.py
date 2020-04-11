@@ -15,7 +15,7 @@ import multiprocessing
 import time
 
 client_input = "turning on"
-
+recieved_y_axis = -1000
 def wait_for_input():
     client_input = sys.stdin.readline()
 
@@ -32,24 +32,46 @@ def analyze(message):
 
     try:
         int(messages[0])
+        int(messages[1])
+        int(messages[2])
     except:
         return
     file = open('../number.txt', 'r')
     number = int(file.read())
     file.close
 
+
+    global recieved_y_axis
+
+    rpi_number = int(messages[0])
+    direction = int(messages[1])
+    y_axis = float(messages[2])
+
     #checks each kind of message that could be delivered
 
     #first, checks if message was sent for this pi by seeing if the ball is coming towards it
-    if(int(messages[0]) + int(messages[1]) == number):
+    if(rpi_number + direction == number):
+        recieved_y_axis = y_axis
+        pan_till_detected(direction)
+
         #then checks from which direction it is coming
-        if(int(messages[1]) > 0):
+        if(direction > 0):
             print("to the right")
+
             #later, run function to slowly move right while adjusting based on messages[2] (the y-axis) until the ball is detected.
-        if(int(messages[1]) < 0):
+        if(direction < 0):
             print("to the left")
 
-
+def pan_till_detected(direction):
+    pan_angle = pantilthat.get_pan()
+    if(direction > 0):
+        while(pan_angle > -90):
+            pantilthat.pan(pan_angle + 2)
+            sleep(0.2)
+    else:
+        while(pan_angle < 90):
+            pantilthat.pan(pan_angle - 2)
+            sleep(0.2)
 
 def main():
     found = False
