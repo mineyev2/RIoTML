@@ -29,7 +29,7 @@ def analyze(message):
     try:
         int(message)
     except:
-        break
+        return
     print('\x1b[4;33;40m' + message + '\x1b[0m')
     messages = message.rstrip().split(',')
 
