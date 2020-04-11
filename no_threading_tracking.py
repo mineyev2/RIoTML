@@ -26,7 +26,7 @@ def display() :
 	sys.stdout.flush()
 
 def analyze(message):
-    print('\x1b[0;34;40' + message + '\x1b[0m')
+    print('\x1b[0;34;40m' + message + '\x1b[0m')
     messages = message.rstrip().split(',')
 
 
@@ -59,7 +59,7 @@ def main():
     print("Starting server now")
 
     host = '192.168.1.78'
-    port = 11000
+    port = 12000
 
     # asks for user name
     file = open("../number.txt", "r")
