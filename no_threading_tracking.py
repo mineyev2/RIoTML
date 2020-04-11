@@ -99,7 +99,8 @@ def main():
                     sys.exit()
                 else:
                     #read the data from other pis
-                    sys.stdout.write(data)
+                    #sys.stdout.write(data)
+                    analyze(data)
                     #display()
         #print("running ball tracking")
 
