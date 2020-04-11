@@ -66,11 +66,11 @@ def pan_till_detected(direction):
     pan_angle = pantilthat.get_pan()
     if(direction > 0):
         while(pan_angle > -90):
-            pantilthat.pan(pan_angle + 2)
+            pantilthat.pan(pan_angle - 2)
             sleep(0.2)
     else:
         while(pan_angle < 90):
-            pantilthat.pan(pan_angle - 2)
+            pantilthat.pan(pan_angle + 2)
             sleep(0.2)
 
 def main():
