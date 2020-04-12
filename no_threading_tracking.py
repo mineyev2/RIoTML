@@ -19,7 +19,7 @@ recieved_y_axis = -1000.0
 found = False
 pan_running = False
 within_range = False
-past_seventy = False
+past_range = False
 
 
 def wait_for_input():
@@ -52,7 +52,7 @@ def analyze(message, s):
         pan = pantilthat.get_pan()
         tilt = pantilthat.get_tilt()
 
-        while((pan < 2 and tilt < 2) or (pan > 2 and tilt > 2)):
+        while(not (pan < 5 and tilt < 5) or not (pan > 5 and tilt > 5)):
             if (pan > 0):
                 pantilthat.pan(pan - 1)
             else:
@@ -131,7 +131,7 @@ def main():
     global found
     global client_input
     global within_range
-    global past_seventy
+    global past_range
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-b", "--buffer", type=int, default=64,
@@ -252,20 +252,20 @@ def main():
                 msg = '1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
-                past_seventy = True
+                past_range = True
             elif (pan < -50):
                 msg = '-1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
-                past_seventy = True
+                past_range = True
             else:
-                if(past_seventy):
+                if(past_range):
                     print("came back to range")
                     msg = '2'
                     print(msg)
                     s.send(msg.encode('utf-8'))
                     #within_range = False
-                    past_seventy = False
+                    past_range = False
             if (pan > 90):
                 pantilthat.pan(90)
             elif (pan < -90):
