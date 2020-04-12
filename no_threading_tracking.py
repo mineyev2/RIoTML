@@ -18,6 +18,8 @@ client_input = "turning on"
 recieved_y_axis = -1000.0
 found = False
 pan_running = False
+within_range = False
+past_seventy = False
 
 
 def wait_for_input():
@@ -127,6 +129,8 @@ def pan_till_detected(direction, s):
 def main():
     global found
     global client_input
+    global within_range
+    global past_seventy
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-b", "--buffer", type=int, default=64,
@@ -247,15 +251,19 @@ def main():
                 msg = '1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
+                past_seventy = True
             elif (pan < -70):
                 msg = '-1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
+                past_seventy = True
             else:
-                msg = '2'
-                print(msg)
-                s.send(msg.encode('utf-8'))
-
+                if(past_seventy):
+                    msg = '2'
+                    print(msg)
+                    s.send(msg.encode('utf-8'))
+                    #within_range = False
+                    past_seventy = False
             if (pan > 90):
                 pantilthat.pan(90)
             elif (pan < -90):
