@@ -45,7 +45,7 @@ def analyze(message, s):
 
     rpi_number = int(messages[0])
 
-    if(int(messages[1]) == 3):
+    if(int(messages[1]) == 2):
         pan = pantilthat.get_pan()
         tilt = pantilthat.get_tilt()
 
@@ -61,6 +61,7 @@ def analyze(message, s):
             time.sleep(0.02)
         pantilthat.pan(0)
         pantilthat.tilt(0)
+        return
 
     file = open('../number.txt', 'r')
     number = int(file.read())
@@ -76,7 +77,7 @@ def analyze(message, s):
         float(messages[2])
     except:
         return
-    
+
     direction = int(messages[1])
     y_axis = float(messages[2])
 
