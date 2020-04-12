@@ -48,6 +48,7 @@ def analyze(message, s):
     rpi_number = int(messages[0])
 
     if(int(messages[1]) == 2):
+        print("reverting back to original position")
         pan = pantilthat.get_pan()
         tilt = pantilthat.get_tilt()
 
@@ -259,6 +260,7 @@ def main():
                 past_seventy = True
             else:
                 if(past_seventy):
+                    print("came back to range")
                     msg = '2'
                     print(msg)
                     s.send(msg.encode('utf-8'))
