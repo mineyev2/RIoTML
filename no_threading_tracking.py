@@ -47,6 +47,7 @@ def analyze(message, s):
 
     rpi_number = int(messages[0])
 
+
     if(int(messages[1]) == 2):
         print("reverting back to original position")
         pan = pantilthat.get_pan()
