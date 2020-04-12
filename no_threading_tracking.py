@@ -71,6 +71,12 @@ def analyze(message, s):
     global recieved_y_axis
     global pan_running
 
+
+    try:
+        float(messages[2])
+    except:
+        return
+    
     direction = int(messages[1])
     y_axis = float(messages[2])
 
