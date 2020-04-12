@@ -53,6 +53,9 @@ def analyze(message, s):
         tilt = pantilthat.get_tilt()
 
         while(not (pan < 5 and tilt < 5) or not (pan > 5 and tilt > 5)):
+            pan = pantilthat.get_pan()
+            tilt = pantilthat.get_tilt()
+            
             if (pan > 0):
                 pantilthat.pan(pan - 1)
             else:
