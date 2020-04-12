@@ -38,17 +38,39 @@ def analyze(message, s):
 
     try:
         int(messages[0])
+        int(messages[1])
     except:
         # print("unreadable")
         return
+
+    rpi_number = int(messages[0])
+
+    if(int(messages[1]) == 3):
+        pan = pantilthat.get_pan()
+        tilt = pantilthat.get_tilt()
+
+        while((pan < 2 and tilt < 2) or (pan > 2 and tilt > 2)):
+            if (pan > 0):
+                pantilthat.pan(pan - 1)
+            else:
+                pantilthat.pan(pan + 1)
+            if(tilt > 0):
+                pantilthat.tilt(tilt - 1)
+            else:
+                pantilthat.tilt(tilt + 1)
+            time.sleep(0.02)
+        pantilthat.pan(0)
+        pantilthat.tilt(0)
+
     file = open('../number.txt', 'r')
     number = int(file.read())
     file.close()
 
+
+
     global recieved_y_axis
     global pan_running
 
-    rpi_number = int(messages[0])
     direction = int(messages[1])
     y_axis = float(messages[2])
 
