@@ -61,7 +61,7 @@ def analyze(message, s):
                 pantilthat.tilt(tilt - 1)
             else:
                 pantilthat.tilt(tilt + 1)
-            time.sleep(0.02)
+            time.sleep(0.1)
         pantilthat.pan(0)
         pantilthat.tilt(0)
         return
