@@ -248,12 +248,12 @@ def main():
 
             # if past the tick, send message to other pis so they can start tracking too
 
-            if (pan > 70):
+            if (pan > 50):
                 msg = '1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
                 past_seventy = True
-            elif (pan < -70):
+            elif (pan < -50):
                 msg = '-1,' + str(tilt)
                 print(msg)
                 s.send(msg.encode('utf-8'))
